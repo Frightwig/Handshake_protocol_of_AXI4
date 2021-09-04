@@ -28,7 +28,19 @@ And there are three cases according to this protocol:
 >[pic]  
   
 ## Register scheme  
-Some time we need to register signal to timing repair.
+Sometimes we need to register signal to timing repair.And for different signal there will be different schemes.And it requires that the protocol will be still followed and can't transimit wrong datas.
+  
+### 1.Register VALID  
+>Register the VALID and data from source whatever.   
+>simultaneously it can fullfill the back-press to control the transmission speed.     
+>[pic]  
+>The VALID and data will delay one clock to output.And use ready_down and valid_down to be the enable signal of this register.Only if slave receives the data or this register doesn't  get valid data yet this register can get new datas.If current valid data is not received by slave,the register will always keep current data.  
+  
+### 2.Register READY 
+>Register the READY from destination.   
+>If we just use the registered READY directly there may be some errors.Because we need READY to tell the upstream if slave can get new datas.If we use the dalayed READY we may miss a       
+>[pic]  
+>The VALID and data will delay one clock to output.And use ready_down and valid_down to be the enable signal of this register.Only if slave receives the data or this register doesn't  get valid data yet this register can get new datas.If current valid data is not received by slave,the register will always keep current data. 
   
 
 
