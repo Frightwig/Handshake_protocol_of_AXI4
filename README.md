@@ -4,7 +4,7 @@ This is a little project and understangding of the handshake_protocol of AXI4 an
 
 ## Handshake_protocol
 As we all know that the AXI4 bus have 5 channels and all of them follow the hand_protocol.And this protocal transmit messages by the signs of VALID & READY.
-![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/2.jpg) 
+![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/2.jpg)  
 1.The source asserts VALID to indicate that its data or address is able to transimit.  
 2.The destination asserts READY to indicate that destination is ready to recive the data/address of source.  
 Only if both of them are up level and the data/address can be transmitted.And de-assert the two signs after all transmissions.  
@@ -27,6 +27,7 @@ The READY can de-assert and assert casually before VALID arrives.And this won't 
 >If READY and VALID arrive simultaneously just transmit data.   
 >And the transmission can keep many clks if the two signals keep high-level.    
 ![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/4.jpg)  
+  
   
 ## Register scheme  
 Sometimes we need to register signal to timing repair.And for different signal there will be different schemes.And it requires that the protocol will be still followed and can't transimit wrong datas.
