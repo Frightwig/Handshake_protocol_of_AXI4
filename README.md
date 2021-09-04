@@ -19,14 +19,14 @@ And there are three cases according to this protocol:
   
 ### 2.READY before VALID  
 >If READY arrives before VALID.The destination will wait VALID to receive the data.   
->Once VALID appers ,the destination starts to get data.When destination is't able to get new datas,READY de-assert.    
->[https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/3..jpg]  
->The READY can de-assert and assert casually before VALID arrives.And this won't influence the data transmission.  
+Once VALID appers ,the destination starts to get data.When destination is't able to get new datas,READY de-assert.    
+![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/3..jpg)  
+The READY can de-assert and assert casually before VALID arrives.And this won't influence the data transmission.  
   
 ### 3.VALID with READY  
 >If READY and VALID arrive simultaneously just transmit data.   
 >And the transmission can keep many clks if the two signals keep high-level.    
->[https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/4.jpg]  
+![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/4.jpg)  
   
 ## Register scheme  
 Sometimes we need to register signal to timing repair.And for different signal there will be different schemes.And it requires that the protocol will be still followed and can't transimit wrong datas.
@@ -34,14 +34,14 @@ Sometimes we need to register signal to timing repair.And for different signal t
 ### 1.Register VALID  
 >Register the VALID and data from source whatever.   
 >simultaneously it can fullfill the back-press to control the transmission speed.     
->[https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/valid%E6%89%93%E6%8B%8D.png]  
+>![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/valid%E6%89%93%E6%8B%8D.png)  
 >The VALID and data will delay one clock to output.And use ready_down and valid_down to be the enable signal of this register.Only if slave receives the data or this register doesn't  get valid data yet this register can get new datas.If current valid data is not received by slave,the register will always keep current data.  
   
 ### 2.Register READY 
 >Register the READY from destination.   
 >If we just use the registered READY directly there may be some errors.Because we need READY to tell the upstream if slave can get new datas.If we use the dalayed READY we may miss a data.  
 >Thus adding a temp signal to accept.The temp only works when the READY changes suddenly.If the data after the sudden change is valid,assert the temp and store this data.If temp asserts and READY is coming, de-assert temp and transmit the temp data to slave.        
->[https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/ready%E6%89%93%E6%8B%8D.png]  
+>![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/ready%E6%89%93%E6%8B%8D.png)  
 >In normal times (not a sudden change of READY),just bypass the temp register.And the output of valid_down is a XOR of temp and VALID ,and if temp is high-level ,output the temp data, or output the direct connection data. 
 
 ##  
