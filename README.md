@@ -13,7 +13,7 @@ And there are three cases according to this protocol:
 ### 1.VALID before READY  
 >If VALID arrives before READY.This signal and the valid data can't de-assert till the READY arrives and receive the data.  
 >This can sure that the destination won't miss this valid data.  
->[pic]  
+>![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/2.jpg)   
 >If the destination is not ready yet but the source starts to generate new valid datas,the need more registers to store them.  
   
 ### 2.READY before VALID  
