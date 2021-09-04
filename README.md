@@ -3,7 +3,7 @@
 This is a little project and understangding of the handshake_protocol of AXI4 and the  realization in a register way.  
 
 ## Handshake_protocol
-As we all know that the AXI4 bus have 5 channels and all of them follow the hand_protocol.And this protocal transmit messages by the signs of VALID & READY.
+As we all know that the AXI4 bus have 5 channels and all of them follow the hand_protocol.And this protocal transmit messages by the signs of VALID & READY.  
 ![](https://github.com/Frightwig/Handshake_protocol_of_AXI4/blob/main/doc/2.jpg)  
 1.The source asserts VALID to indicate that its data or address is able to transimit.  
 2.The destination asserts READY to indicate that destination is ready to recive the data/address of source.  
